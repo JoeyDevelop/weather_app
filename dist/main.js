@@ -1,0 +1,1 @@
+(()=>{const e=document.querySelector("input");document.querySelector(".searchBtn").addEventListener("click",(()=>{const t=e.value;console.log(t),function(e){fetch("https://api.openweathermap.org/data/2.5/weather?q="+e+"&APPID=f267f51a8b8e85d282f5213c10ec1f47",{mode:"cors"}).then((e=>e.json())).then((e=>{console.log(e)}))}(t)}))})();

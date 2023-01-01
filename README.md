@@ -5,6 +5,9 @@ Personal goals:
 2. Become more familiar with Javascript promises
 3. Become more familiar with SOLID design principles
 
-To do: 
-1. Add JS functionality
-2. Update footer to link to appropriate github page
+Current features:
+1. Working search bar that console.logs forecast info of entered city
+
+To do:
+1. Display forecast information on screen
+2. Add some functionality that catches errors.
