@@ -6,6 +6,11 @@ searchBtn.addEventListener("click", () => {
   console.log(info);
   sendWeatherRequest(info);
 });
+searchbar.addEventListener("keypress", (event) => {
+  if (event.key === "Enter") {
+    searchBtn.click();
+  }
+});
 
 function sendWeatherRequest(info) {
   fetch(
@@ -15,9 +20,16 @@ function sendWeatherRequest(info) {
     { mode: "cors" }
   )
     .then((response) => {
-      return response.json();
+      if (response.ok) {
+        return response.json();
+      }
+      throw new Error("Invalid city request");
+      // return response.json();
     })
     .then((response) => {
       console.log(response);
+    })
+    .catch(function (error) {
+      alert(error);
     });
 }

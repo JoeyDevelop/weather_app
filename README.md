@@ -7,7 +7,7 @@ Personal goals:
 
 Current features:
 1. Working search bar that console.logs forecast info of entered city
+2. Alerts user when city input is invalid
 
 To do:
 1. Display forecast information on screen
-2. Add some functionality that catches errors.
