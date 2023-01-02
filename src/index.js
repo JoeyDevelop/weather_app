@@ -1,3 +1,5 @@
+import { clearDom, addForecastToDom } from "./dom";
+
 const searchbar = document.querySelector("input");
 const searchBtn = document.querySelector(".searchBtn");
 let forecast = {};
@@ -33,6 +35,10 @@ function sendWeatherRequest(info) {
     .then(() => {
       convertKelvinToFahrenheit();
     })
+    .then(() => {
+      clearDom();
+      addForecastToDom(forecast);
+    })
     .catch(function (error) {
       alert(error);
     });
@@ -42,7 +48,6 @@ function defineVariables(response) {
   forecast = {
     weather: response.weather[0].main,
     temperature: response.main.temp,
-    feelsLike: response.main.feels_like,
     tempHigh: response.main.temp_max,
     tempLow: response.main.temp_min,
   };
@@ -50,12 +55,10 @@ function defineVariables(response) {
 
 function convertKelvinToFahrenheit() {
   const tempFah = (forecast.temperature - 273.15) * (9 / 5) + 32;
-  forecast.temperature = Math.round((tempFah + Number.EPSILON) * 100) / 100;
-  const feelsLikeFah = (forecast.feelsLike - 273.15) * (9 / 5) + 32;
-  forecast.feelsLike = Math.round((feelsLikeFah + Number.EPSILON) * 100) / 100;
+  forecast.temperature = Math.round((tempFah + Number.EPSILON) * 10) / 10;
   const tempHighFah = (forecast.tempHigh - 273.15) * (9 / 5) + 32;
-  forecast.tempHigh = Math.round((tempHighFah + Number.EPSILON) * 100) / 100;
+  forecast.tempHigh = Math.round((tempHighFah + Number.EPSILON) * 10) / 10;
   const tempLowFah = (forecast.tempLow - 273.15) * (9 / 5) + 32;
-  forecast.tempLow = Math.round((tempLowFah + Number.EPSILON) * 100) / 100;
+  forecast.tempLow = Math.round((tempLowFah + Number.EPSILON) * 10) / 10;
   console.log(forecast);
 }

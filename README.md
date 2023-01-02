@@ -8,6 +8,7 @@ Personal goals:
 Current features:
 1. Working search bar that console.logs forecast info of entered city
 2. Alerts user when city input is invalid
+3. Display forecast information on screen
 
 To do:
-1. Display forecast information on screen
+1. Add functionality to button to switch between fahrenheit and celsius
