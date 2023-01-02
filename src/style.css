@@ -112,9 +112,19 @@ button {
   align-items: center;
 }
 
-
 .search {
   height: 30px;
   width: 200px;
   border-radius: 10px;
+}
+
+.display {
+  display: flex;
+  justify-self: center;
+  align-self: center;
+  height: 300px;
+  width: 250px;
+  margin-bottom: 100px;
+  border-radius: 25px;
+  background-color: #377270;
 }
