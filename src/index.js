@@ -1,4 +1,5 @@
 import { clearDom, addForecastToDom } from "./dom";
+import { convertKelvinToFahrenheit } from "./math";
 
 const searchbar = document.querySelector("input");
 const searchBtn = document.querySelector(".searchBtn");
@@ -33,7 +34,7 @@ function sendWeatherRequest(info) {
       defineVariables(response);
     })
     .then(() => {
-      convertKelvinToFahrenheit();
+      convertKelvinToFahrenheit(forecast);
     })
     .then(() => {
       clearDom();
@@ -51,14 +52,4 @@ function defineVariables(response) {
     tempHigh: response.main.temp_max,
     tempLow: response.main.temp_min,
   };
-}
-
-function convertKelvinToFahrenheit() {
-  const tempFah = (forecast.temperature - 273.15) * (9 / 5) + 32;
-  forecast.temperature = Math.round((tempFah + Number.EPSILON) * 10) / 10;
-  const tempHighFah = (forecast.tempHigh - 273.15) * (9 / 5) + 32;
-  forecast.tempHigh = Math.round((tempHighFah + Number.EPSILON) * 10) / 10;
-  const tempLowFah = (forecast.tempLow - 273.15) * (9 / 5) + 32;
-  forecast.tempLow = Math.round((tempLowFah + Number.EPSILON) * 10) / 10;
-  console.log(forecast);
 }

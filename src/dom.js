@@ -1,4 +1,7 @@
+import { convertFahrenheitToCelsius, convertCelsiusToFahrenheit } from "./math";
+
 const body = document.querySelector(".body");
+let buttonDef = true;
 
 function clearDom() {
   if (body.querySelector(".display")) {
@@ -27,7 +30,17 @@ function addForecastToDom(forecast) {
   tempHighStat.classList.add("stat");
   tempLowStat.classList.add("stat");
 
-  button.innerHTML = "°C";
+  if (buttonDef === true) {
+    button.innerHTML = "°C";
+    button.addEventListener("click", (event) => {
+      changeTempTypeFToC(event, forecast);
+    });
+  } else if (buttonDef === false) {
+    button.innerHTML = "°F";
+    button.addEventListener("click", (event) => {
+      changeTempTypeCToF(event, forecast);
+    });
+  }
 
   display.appendChild(button);
   display.appendChild(weatherStat);
@@ -71,6 +84,20 @@ function addForecastToDom(forecast) {
   tempHighStat.appendChild(tempHighValue);
   tempLowStat.appendChild(tempLowKey);
   tempLowStat.appendChild(tempLowValue);
+}
+
+function changeTempTypeFToC(event, forecast) {
+  convertFahrenheitToCelsius(event, forecast);
+  clearDom();
+  buttonDef = false;
+  addForecastToDom(forecast);
+}
+
+function changeTempTypeCToF(event, forecast) {
+  convertCelsiusToFahrenheit(event, forecast);
+  clearDom();
+  buttonDef = true;
+  addForecastToDom(forecast);
 }
 
 export { clearDom, addForecastToDom };
